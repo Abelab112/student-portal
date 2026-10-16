@@ -2,6 +2,7 @@
 const cors = require('cors');
 const path = require('path');
 require('./db');
+require('./seed-courses');
 
 const authRoutes         = require('./routes/auth');
 const courseRoutes       = require('./routes/courses');

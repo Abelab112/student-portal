@@ -94,9 +94,7 @@ db.serialize(() => {
             totalGP += r.total_gp;
           });
           const cgpa = (totalGP / totalCR).toFixed(2);
-          console.log(`\n🎓 CUMULATIVE: CR ${totalCR}  ·  GP ${totalGP}  ·  CGPA ${cgpa}`);
-
-          process.exit(0);
+          console.log;
         }
       );
     });
