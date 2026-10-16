@@ -1,0 +1,8 @@
+node_modules/
+portal.db
+portal.db-journal
+.env
+*.log
+.DS_Store
+dist/
+build/

@@ -1,0 +1,111 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>University Student Portal</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- LOGIN -->
+  <div id="loginScreen">
+    <div class="login-card">
+      <div class="logo">&#127979;</div>
+      <h2>UPSA Student Portal</h2>
+      <p class="subtitle">University of Professional Studies, Accra</p>
+
+      <form id="loginForm" autocomplete="off">
+        <div class="login-field">
+          <label>Student ID Number</label>
+          <input type="text" id="loginId" placeholder="e.g. 12345678" required>
+        </div>
+        <div class="login-field">
+          <label>Password (DOB - DDMMYYYY)</label>
+          <input type="password" id="loginPin" placeholder="e.g. 15082004" required>
+        </div>
+        <button type="submit" class="login-btn" id="loginBtn">Sign In</button>
+      </form>
+
+      <div class="login-error" id="loginError"></div>
+      <div class="login-hint">
+        <strong>Demo:</strong> ID <strong>12345678</strong> &middot; Password <strong>15082004</strong>
+      </div>
+      <p class="switch-link">Don't have an account? <a href="#" id="showRegister">Create one</a></p>
+    </div>
+  </div>
+
+  <!-- REGISTER -->
+  <div id="registerScreen" style="display:none;">
+    <div class="login-card">
+      <div class="logo">&#128221;</div>
+      <h2>Create Your Account</h2>
+      <p class="subtitle">Fill in your details to register</p>
+
+      <form id="registerForm" autocomplete="off">
+        <div class="login-field">
+          <label>Student ID Number</label>
+          <input type="text" id="regId" placeholder="6-12 digits" required>
+        </div>
+        <div class="login-field">
+          <label>Full Name</label>
+          <input type="text" id="regName" placeholder="e.g. Sarah Mensah" required>
+        </div>
+        <div class="login-field">
+          <label>Program</label>
+          <input type="text" id="regProgram" placeholder="e.g. BSc Accounting">
+        </div>
+        <div class="login-field">
+          <label>Year of Study</label>
+          <input type="text" id="regYear" placeholder="e.g. 1st year">
+        </div>
+        <div class="login-field">
+          <label>Password (min 6 chars)</label>
+          <input type="password" id="regPassword" required>
+        </div>
+        <button type="submit" class="login-btn" id="registerBtn">Create Account</button>
+      </form>
+
+      <div class="login-error" id="registerError"></div>
+      <p class="switch-link">Already have an account? <a href="#" id="showLogin">Sign in</a></p>
+    </div>
+  </div>
+
+  <!-- PORTAL -->
+  <div class="portal" id="portalScreen">
+    <div class="topbar">
+      <div class="brand">&#127979; UPSA Portal <span>STUDENT</span></div>
+      <div class="user-info">
+        <span>&#128100; <strong id="topbarName">&mdash;</strong> &middot; <span id="topbarId">&mdash;</span></span>
+        <button class="logout-btn" id="logoutBtn">Logout</button>
+      </div>
+    </div>
+
+    <!-- TRANSCRIPT VIEW -->
+    <div id="transcriptView">
+      <div class="student-card">
+        <h1>Academic Transcript</h1>
+        <div class="student-details">
+          <div class="detail-item"><label>Student name</label><input id="studentName" readonly></div>
+          <div class="detail-item"><label>Program</label><input id="program" readonly></div>
+          <div class="detail-item"><label>Year of study</label><input id="currentYear" readonly></div>
+        </div>
+      </div>
+
+      <div id="transcriptContainer"></div>
+
+      <div class="cgpa-card" id="cgpaCard">
+        <div class="cgpa-label">Cumulative GPA (CGPA)</div>
+        <div class="cgpa-value" id="cgpaValue">&mdash;</div>
+        <div class="cgpa-sub" id="cgpaSub">&mdash;</div>
+      </div>
+    </div>
+  </div>
+
+  <div id="toast"></div>
+
+  <script src="js/api.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/tracker.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>

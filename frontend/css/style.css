@@ -1,0 +1,210 @@
+* { margin: 0; padding: 0; box-sizing: border-box; font-family: "Segoe UI", Roboto, sans-serif; }
+body { background: linear-gradient(145deg, #eef2f7, #d9e0eb); min-height: 100vh; display: flex; justify-content: center; padding: 2rem 1rem; }
+#loginScreen { position: fixed; inset: 0; background: linear-gradient(135deg, #0b2b4a, #1e4b77); display: flex; align-items: center; justify-content: center; z-index: 999; transition: 0.4s; }
+#loginScreen.hidden { opacity: 0; visibility: hidden; pointer-events: none; }
+.login-card { background: #fff; border-radius: 1.5rem; padding: 3rem 2.5rem; width: 100%; max-width: 420px; text-align: center; box-shadow: 0 30px 50px -20px rgba(0,0,0,0.5); }
+.login-card .logo { font-size: 3rem; }
+.login-card h2 { color: #0b2b4a; font-size: 1.4rem; margin: 0.5rem 0 0.25rem; }
+.login-card .subtitle { color: #6b7c92; font-size: 0.85rem; margin-bottom: 2rem; }
+.login-field { text-align: left; margin-bottom: 1.2rem; }
+.login-field label { display: block; font-size: 0.75rem; text-transform: uppercase; font-weight: 700; color: #4a5e74; margin-bottom: 0.5rem; }
+.login-field input { width: 100%; background: #f8fafd; border: 1.5px solid #d0dbe8; border-radius: 0.9rem; padding: 0.9rem 1.2rem; font-size: 1rem; outline: none; }
+.login-field input:focus { border-color: #2d6a9f; background: #fff; }
+.login-btn { width: 100%; background: #0b2b4a; color: #fff; border: none; padding: 0.95rem; border-radius: 0.9rem; font-weight: 700; cursor: pointer; margin-top: 0.5rem; }
+.login-btn:hover { background: #1e4b77; }
+.login-hint { margin-top: 1.5rem; font-size: 0.72rem; color: #8b9eb5; background: #f0f5fa; padding: 0.7rem 1rem; border-radius: 0.7rem; }
+.login-error { color: #b22234; font-size: 0.8rem; font-weight: 600; margin-top: 0.75rem; min-height: 1rem; }
+#portalScreen { max-width: 1300px; width: 100%; display: none; }
+#portalScreen.visible { display: block; }
+.topbar { background: #0b2b4a; border-radius: 1.2rem; padding: 0.9rem 1.5rem; display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem; flex-wrap: wrap; gap: 0.8rem; color: #fff; }
+.topbar .brand { display: flex; align-items: center; gap: 0.6rem; font-weight: 700; }
+.topbar .brand span { background: #1e4b77; padding: 0.3rem 0.7rem; border-radius: 0.5rem; font-size: 0.7rem; }
+.topbar .user-info { display: flex; align-items: center; gap: 1rem; color: #cbd9e8; font-size: 0.85rem; }
+.topbar .user-info strong { color: #fff; }
+.logout-btn { background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); color: #fff; padding: 0.5rem 1rem; border-radius: 0.6rem; cursor: pointer; font-weight: 600; font-size: 0.78rem; }
+.logout-btn:hover { background: #b22234; }
+.tabs { display: flex; gap: 0.4rem; background: #fff; padding: 0.5rem; border-radius: 1rem; margin-bottom: 1.8rem; flex-wrap: wrap; }
+.tab-btn { flex: 1; min-width: 140px; background: transparent; border: none; padding: 0.8rem; border-radius: 0.7rem; font-weight: 600; color: #4a5e74; cursor: pointer; }
+.tab-btn.active { background: #0b2b4a; color: #fff; }
+.tab-content { display: none; }
+.tab-content.active { display: block; }
+.student-card { background: #fff; border-radius: 2rem; padding: 2rem; box-shadow: 0 20px 30px -10px rgba(0,20,40,0.25); margin-bottom: 2rem; }
+.student-card h1 { font-size: 1.6rem; color: #0b2b4a; padding-bottom: 1rem; margin-bottom: 1.5rem; border-bottom: 2px solid #cbd5e1; }
+.student-details { display: flex; flex-wrap: wrap; gap: 2rem 3rem; }
+.detail-item { display: flex; flex-direction: column; gap: 0.4rem; min-width: 200px; }
+.detail-item label { font-size: 0.75rem; text-transform: uppercase; font-weight: 600; color: #4a5e74; }
+.detail-item input { background: #f8fafd; border: 1.5px solid #d0dbe8; border-radius: 1rem; padding: 0.8rem 1.2rem; color: #0b2b4a; }
+.years-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.8rem; }
+@media (max-width: 800px) { .years-grid { grid-template-columns: 1fr; } }
+.year-panel { background: #fff; border-radius: 1.8rem; padding: 1.6rem; box-shadow: 0 15px 25px -12px rgba(0,20,40,0.2); }
+.year-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.2rem; padding-bottom: 0.75rem; border-bottom: 2px dashed #b8c9dd; }
+.year-header h2 { font-size: 1.2rem; color: #0b2b4a; }
+.year-badge { background: #0b2b4a; color: #fff; border-radius: 40px; padding: 0.3rem 1rem; font-size: 0.7rem; font-weight: 600; text-transform: uppercase; }
+.course-list { display: flex; flex-direction: column; gap: 0.6rem; margin-bottom: 1.2rem; min-height: 40px; }
+.course-item { background: #f5f9ff; border-radius: 1rem; padding: 0.7rem 0.9rem; display: flex; justify-content: space-between; align-items: center; border-left: 5px solid #2d6a9f; }
+.course-info { display: flex; flex-direction: column; gap: 0.15rem; }
+.course-name { font-weight: 600; color: #102b44; font-size: 0.95rem; }
+.course-grade { font-size: 0.75rem; font-weight: 600; color: #2d6a9f; background: #d9e8f5; padding: 0.2rem 0.6rem; border-radius: 40px; width: fit-content; }
+.remove-btn { background: none; border: none; color: #b22234; font-size: 1.2rem; cursor: pointer; }
+.add-course { display: flex; gap: 0.5rem; flex-wrap: wrap; }
+.add-course input { flex: 1 1 100px; border: 1.5px solid #d0dbe8; border-radius: 2rem; padding: 0.6rem 1rem; font-size: 0.85rem; outline: none; }
+.add-course button { background: #0b2b4a; border: none; border-radius: 2rem; padding: 0.6rem 1.4rem; color: #fff; font-weight: 600; font-size: 0.8rem; cursor: pointer; }
+.add-course button:hover { background: #1e4b77; }
+.summary { background: #fff; border-radius: 2rem; padding: 1.2rem 2rem; margin-top: 2rem; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 1rem; color: #14385c; font-weight: 600; }
+.summary span { background: #e1eaf3; padding: 0.4rem 1.2rem; border-radius: 3rem; color: #0b2b4a; margin-left: 0.6rem; }
+.reg-panel { background: #fff; border-radius: 2rem; padding: 2rem; box-shadow: 0 20px 30px -10px rgba(0,20,40,0.25); }
+.reg-panel h2 { color: #0b2b4a; margin-bottom: 0.4rem; }
+.section-desc { color: #6b7c92; font-size: 0.85rem; margin-bottom: 1.8rem; }
+.offered-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 1rem; }
+.offered-course { background: #f5f9ff; border: 1.5px solid #d0dbe8; border-radius: 1.2rem; padding: 1.1rem; display: flex; justify-content: space-between; align-items: center; gap: 0.8rem; }
+.offered-info { display: flex; flex-direction: column; gap: 0.3rem; }
+.offered-code { font-size: 0.7rem; font-weight: 700; color: #2d6a9f; background: #d9e8f5; padding: 0.15rem 0.5rem; border-radius: 0.4rem; width: fit-content; }
+.offered-title { font-weight: 600; color: #102b44; font-size: 0.9rem; }
+.offered-units { font-size: 0.75rem; color: #6b7c92; }
+.reg-action-btn { background: #0b2b4a; color: #fff; border: none; padding: 0.55rem 1.1rem; border-radius: 2rem; font-size: 0.75rem; font-weight: 700; cursor: pointer; white-space: nowrap; }
+.reg-action-btn.registered { background: #1a7a4a; }
+.reg-action-btn.drop { background: #b22234; }
+.reg-summary-bar { margin-top: 1.8rem; padding: 1rem 1.4rem; background: #eef4fb; border-radius: 1rem; display: flex; gap: 1.5rem; justify-content: space-between; flex-wrap: wrap; font-weight: 600; color: #14385c; }
+.reg-summary-bar strong { color: #0b2b4a; font-size: 1rem; }
+#toast { position: fixed; bottom: 2rem; left: 50%; transform: translateX(-50%) translateY(100px); background: #0b2b4a; color: #fff; padding: 0.9rem 1.8rem; border-radius: 3rem; font-size: 0.85rem; font-weight: 600; opacity: 0; transition: 0.3s; z-index: 1000; }
+#toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+
+/* ============================================================ */
+/*  TRANSCRIPT VIEW                                              */
+/* ============================================================ */
+#transcriptView { width: 100%; }
+
+.semester-section {
+  background: #fff;
+  border-radius: 1.8rem;
+  padding: 1.8rem 2rem;
+  margin-bottom: 2rem;
+  box-shadow: 0 15px 25px -12px rgba(0,20,40,0.2);
+  border: 1px solid rgba(255,255,255,0.9);
+}
+
+.semester-header {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  margin-bottom: 1.2rem;
+  padding-bottom: 0.9rem;
+  border-bottom: 3px solid #0b2b4a;
+}
+.semester-header .sem-year {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: #0b2b4a;
+  letter-spacing: -0.02em;
+}
+.semester-header .sem-label {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #6b7c92;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.transcript-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+  color: #1a2b40;
+}
+.transcript-table thead tr {
+  background: #eef4fb;
+}
+.transcript-table th {
+  text-align: left;
+  padding: 0.75rem 0.6rem;
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+  font-weight: 700;
+  color: #14385c;
+}
+.transcript-table td {
+  padding: 0.7rem 0.6rem;
+  border-bottom: 1px solid #edf1f6;
+}
+.transcript-table .col-code  { width: 12%; font-weight: 700; color: #0b2b4a; }
+.transcript-table .col-title { width: 55%; }
+.transcript-table .col-cr    { width: 10%; text-align: center; }
+.transcript-table .col-grade { width: 10%; text-align: center; font-weight: 700; color: #1e4b77; }
+.transcript-table .col-gp    { width: 13%; text-align: right; font-weight: 600; }
+
+.transcript-table .totals-row td {
+  border-top: 2px solid #0b2b4a;
+  border-bottom: none;
+  padding-top: 0.9rem;
+  font-weight: 700;
+  color: #0b2b4a;
+}
+.transcript-table .totals-label {
+  text-align: right;
+  font-size: 0.85rem;
+  letter-spacing: 0.4px;
+}
+.transcript-table .totals-value { font-size: 0.95rem; }
+
+.semester-gpa-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 1.2rem;
+  padding: 0.8rem 1.2rem;
+  background: #eef4fb;
+  border-radius: 0.9rem;
+}
+.semester-gpa-label {
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: #14385c;
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+}
+.semester-gpa-value {
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: #0b2b4a;
+}
+
+/* CGPA Card */
+.cgpa-card {
+  background: linear-gradient(135deg, #0b2b4a, #1e4b77);
+  color: #fff;
+  border-radius: 2rem;
+  padding: 2.2rem 2rem;
+  text-align: center;
+  box-shadow: 0 25px 40px -15px rgba(11,43,74,0.5);
+  margin-top: 2rem;
+}
+.cgpa-label {
+  font-size: 0.8rem;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  opacity: 0.8;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+.cgpa-value {
+  font-size: 3.6rem;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 1;
+  margin-bottom: 0.5rem;
+}
+.cgpa-sub {
+  font-size: 0.82rem;
+  opacity: 0.75;
+}
+
+.transcript-empty {
+  background: #fff;
+  border-radius: 2rem;
+  padding: 3rem 2rem;
+  text-align: center;
+  color: #8b9eb5;
+  font-style: italic;
+  box-shadow: 0 15px 25px -12px rgba(0,20,40,0.15);
+}
